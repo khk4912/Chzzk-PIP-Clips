@@ -26,6 +26,10 @@ const Menu = (): JSX.Element => (
         </Link>
       </li>
     </ul>
+
+    <div className={styles.searchBar}>
+      <input type='text' name='' id='' placeholder='검색...' />
+    </div>
   </nav>
 )
 
