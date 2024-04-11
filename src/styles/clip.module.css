@@ -1,0 +1,34 @@
+#thumbnail {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+#title-span {
+  margin-top: 1vh;
+  font-size: large;
+  font-weight: bold;
+}
+
+.info-container {
+  position: relative;
+}
+
+#viewerCount {
+  position: absolute;
+  width: 8%;
+  bottom: 5%;
+  right: 5%;
+  text-align: center;
+  font-size: smaller;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 5px;
+  color: white;
+  padding: 0.5em;
+}
+
+@media (max-width: 450px) {
+  #viewerCount {
+    width: 18%;
+    bottom: 5%;
+  }
+}

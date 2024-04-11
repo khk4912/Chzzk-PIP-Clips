@@ -1,0 +1,48 @@
+.latest-clips {
+  width: 90%;
+  margin: 5vh 5vw;
+  height: 80vh;
+}
+
+.latest-clips h2 {
+  margin-bottom: 3vh;
+}
+
+.clips {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 2vw;
+  grid-row-gap: 3vh;
+}
+
+@media (max-width: 768px) {
+  .clips {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.no-clips {
+  height: 60%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.no-clips img {
+  width: 15vw;
+}
+
+#msg {
+  display: grid;
+  place-items: center;
+}
+
+#msg span {
+  font-weight: 500;
+  font-size: large;
+}
