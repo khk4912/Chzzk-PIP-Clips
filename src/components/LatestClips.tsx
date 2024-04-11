@@ -16,7 +16,7 @@ function LatestClips (): JSX.Element {
           <img src={Question} alt='Question mark' />
           <span>최신 클립이 없어요. </span>
         </div>
-      </div> */
+      </div>
     </div>
   )
 }
