@@ -63,6 +63,7 @@
 }
 
 .nav-items li:hover {
+  cursor: pointer;
   background-color: hsl(220, 7%, 15%);
   transition: all 0.2s linear;
 }
