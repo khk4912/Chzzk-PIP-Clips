@@ -4,6 +4,7 @@ export interface ClipProps {
   title: string
   id: string
   viewers: number
+  thumbnail: string
 }
 
 function Clip (props: ClipProps): JSX.Element {
