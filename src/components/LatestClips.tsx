@@ -4,6 +4,7 @@ import Clip from './Clip'
 import Question from '../assets/question.svg'
 import useSWR from 'swr'
 import { getLatestClips } from '../api/clip'
+import { Link } from 'react-router-dom'
 
 function LatestClips (): JSX.Element {
   const { data, isLoading } = useSWR('clip', async () => await getLatestClips(1))
@@ -31,13 +32,15 @@ function LatestClips (): JSX.Element {
             {data?.clips?.map(
               (x) => {
                 return (
-                  <Clip
-                    key={x.id}
-                    title={x.title}
-                    id={x.id}
-                    viewers={x.viewers}
-                    thumbnail={x.thumbnailDataURL}
-                  />
+                  <Link to={`/watch/${x.id}`} key={`${x.id}_a`}>
+                    <Clip
+                      key={x.id}
+                      title={x.title}
+                      id={x.id}
+                      viewers={x.viewers}
+                      thumbnail={x.thumbnailDataURL}
+                    />
+                  </Link>
                 )
               }
             )}

@@ -15,6 +15,11 @@
   grid-row-gap: 3vh;
 }
 
+.clips a {
+  text-decoration: none;
+  color: white;
+}
+
 @media (max-width: 768px) {
   .clips {
     grid-template-columns: 1fr 1fr;
