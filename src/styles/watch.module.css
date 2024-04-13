@@ -1,0 +1,10 @@
+.watch {
+  margin: 5vh 5vw;
+  display: grid;
+  place-items: center;
+}
+
+.watch video {
+  width: 60%;
+  aspect-ratio: 16 / 9;
+}
