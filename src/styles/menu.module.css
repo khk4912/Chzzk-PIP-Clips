@@ -130,6 +130,23 @@
   margin-left: auto;
 }
 
+.mobile-search-bar {
+  width: 95vw;
+  height: 5vh;
+  display: none;
+  margin: 1vh 2.5vw;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.mobile-search-bar input {
+  width: 90%;
+  height: 100%;
+  padding-left: 3%;
+  border-radius: 5px;
+  border: none;
+}
+
 @media (max-width: 1155px) {
   .nav-items li {
     width: 20%;
