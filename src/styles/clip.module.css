@@ -33,7 +33,6 @@
   border-radius: 5px;
   color: white;
   padding: 2.5%;
-  font-size: small;
 }
 
 #dateSpan {
@@ -42,12 +41,11 @@
   top: 5%;
   left: 5%;
   text-align: center;
-  font-size: x-small;
+  font-size: xx-small;
   background-color: rgba(0, 0, 0, 0.7);
   border-radius: 5px;
   color: white;
   padding: 2.5%;
-  font-size: small;
 }
 
 @media (max-width: 488px) {
