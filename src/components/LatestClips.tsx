@@ -1,13 +1,32 @@
-import styles from '../styles/latest-clips.module.css'
-import Clip from './Clip'
-
-import Question from '../assets/question.svg'
-import useSWR from 'swr'
-import { getLatestClips } from '../api/clip'
 import { Link } from 'react-router-dom'
 
+import { useInfiniteScroll } from '../hooks/infScroll'
+import { getKey, getLatestClips } from '../api/clip'
+import Question from '../assets/question.svg'
+import styles from '../styles/latest-clips.module.css'
+import Clip from './Clip'
+import useSWRInfinite from 'swr/infinite'
+
 function LatestClips (): JSX.Element {
-  const { data, isLoading } = useSWR('clip', async () => await getLatestClips(1))
+  const { data, isLoading, isValidating, size, setSize } = useSWRInfinite(getKey, getLatestClips, { revalidateFirstPage: false })
+
+  useInfiniteScroll(() => {
+    if (isLoading || isValidating) return
+    void setSize(size + 1)
+  })
+
+  const clips = data?.map((x) => x.clips).flat()
+
+  if (clips?.length === 0) {
+    return (
+      <div className={styles.noClips}>
+        <div id={styles.msg}>
+          <img src={Question} alt='Question mark' />
+          <span>최신 클립이 없어요. </span>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className={styles.latestClips}>
@@ -15,41 +34,55 @@ function LatestClips (): JSX.Element {
 
       {isLoading && <div>로딩 중...</div>}
 
-      {!isLoading &&
-        data?.status === 'error'
+      <div className={styles.clips}>
+        {clips?.map(
+          (x) => {
+            if (x === undefined) return null
 
-        ? (
-          <div className={styles.noClips}>
-            <div id={styles.msg}>
-              <img src={Question} alt='Question mark' />
-              <span>최신 클립이 없어요. </span>
-            </div>
-          </div>
-          )
-
-        : (
-          <div className={styles.clips}>
-            {data?.clips?.map(
-              (x) => {
-                return (
-                  <Link to={`/watch/${x.id}`} key={`${x.id}_a`}>
-                    <Clip
-                      key={x.id}
-                      title={x.title}
-                      id={x.id}
-                      viewers={x.viewers}
-                      thumbnail={x.thumbnailDataURL}
-                    />
-                  </Link>
-                )
-              }
-            )}
-          </div>
-          )}
-
+            return (
+              <Link to={`/watch/${x.id}`} key={`${x.id}_a`}>
+                <Clip
+                  key={x.id}
+                  title={x.title}
+                  id={x.id}
+                  viewers={x.viewers}
+                  thumbnail={x.thumbnailDataURL}
+                />
+              </Link>
+            )
+          }
+        )}
+      </div>
     </div>
-
   )
 }
+//   ? (
+//     <div className={styles.noClips}>
+//       <div id={styles.msg}>
+//         <img src={Question} alt='Question mark' />
+//         <span>최신 클립이 없어요. </span>
+//       </div>
+//     </div>
+//     )
+
+//   : (
+//     <div className={styles.clips}>
+//       {data?.clips?.map(
+//         (x) => {
+//           return (
+//             <Link to={`/watch/${x.id}`} key={`${x.id}_a`}>
+//               <Clip
+//                 key={x.id}
+//                 title={x.title}
+//                 id={x.id}
+//                 viewers={x.viewers}
+//                 thumbnail={x.thumbnailDataURL}
+//               />
+//             </Link>
+//           )
+//         }
+//       )}
+//     </div>
+//     )}
 
 export default LatestClips

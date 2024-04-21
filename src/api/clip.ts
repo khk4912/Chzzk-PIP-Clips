@@ -2,8 +2,12 @@ import type { LatestClips } from '../types/clip'
 
 const DEFAULT_URL = 'https://chzzk-pip.kosame.dev/api'
 
-export const getLatestClips = async (page: number): Promise<LatestClips> => {
-  return await fetch(
-    `${DEFAULT_URL}/latest?page=${page}`
-  ).then(async res => await res.json())
+export const getKey = (pageIndex: number, previousPageData: LatestClips): string | null => {
+  if (pageIndex !== 0 && previousPageData.clips !== undefined && previousPageData.status === 'nodata') return null
+  return `${DEFAULT_URL}/latest?page=${pageIndex + 1}`
+}
+
+export const getLatestClips = async (url: string): Promise<LatestClips> => {
+  return await fetch(url)
+    .then(async res => await res.json())
 }
