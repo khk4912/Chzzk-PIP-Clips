@@ -56,33 +56,5 @@ function LatestClips (): JSX.Element {
     </div>
   )
 }
-//   ? (
-//     <div className={styles.noClips}>
-//       <div id={styles.msg}>
-//         <img src={Question} alt='Question mark' />
-//         <span>최신 클립이 없어요. </span>
-//       </div>
-//     </div>
-//     )
-
-//   : (
-//     <div className={styles.clips}>
-//       {data?.clips?.map(
-//         (x) => {
-//           return (
-//             <Link to={`/watch/${x.id}`} key={`${x.id}_a`}>
-//               <Clip
-//                 key={x.id}
-//                 title={x.title}
-//                 id={x.id}
-//                 viewers={x.viewers}
-//                 thumbnail={x.thumbnailDataURL}
-//               />
-//             </Link>
-//           )
-//         }
-//       )}
-//     </div>
-//     )}
 
 export default LatestClips
