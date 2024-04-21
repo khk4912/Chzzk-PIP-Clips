@@ -46,6 +46,7 @@ function LatestClips (): JSX.Element {
                   title={x.title}
                   id={x.id}
                   viewers={x.viewers}
+                  date={x.uploadDate}
                   thumbnail={x.thumbnailDataURL}
                 />
               </Link>
