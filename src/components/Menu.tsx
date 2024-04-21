@@ -25,7 +25,7 @@ const Menu = (): JSX.Element => {
   return (
     <>
       <nav className={styles.navbar}>
-        <div className={styles.navLogo}>
+        <div className={styles.navLogo} onClick={() => { navigate('/') }}>
           <img src={Logo} alt='Chzzk-PIP 로고' />
           <span id={styles.logoText}>Chzzk-PIP</span>
         </div>
