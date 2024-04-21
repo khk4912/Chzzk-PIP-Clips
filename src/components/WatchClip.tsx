@@ -7,7 +7,7 @@ const WatchClip = (): JSX.Element => {
 
   return (
     <div className={style.watch}>
-      <video src={`https://clips.kosame.dev/${id}`} controls autoPlay playsInline />
+      <video src={`https://r2-clips.kosame.dev/${id}`} controls autoPlay playsInline />
 
       <div className={style.clipInfo}>
         <h2>클립 정보</h2>
