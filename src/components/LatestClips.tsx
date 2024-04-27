@@ -16,7 +16,12 @@ function LatestClips (): JSX.Element {
     void setSize(size + 1)
   })
 
-  const clips = data?.map((x) => x.clips).flat()
+  const clips = []
+  for (const page of data ?? []) {
+    if (page.status === 'success' && page.clips !== undefined) {
+      clips.push(...page.clips)
+    }
+  }
 
   if (clips?.length === 0) {
     return (
