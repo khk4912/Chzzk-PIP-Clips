@@ -2,10 +2,31 @@
   margin: 5vh 5vw;
   display: grid;
   place-items: center;
+  height: 80vh;
 }
 
 .watch video {
   height: 60vh;
   aspect-ratio: 16 / 9;
   max-width: 95%;
+}
+.no-clips {
+  height: 80vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.no-clips img {
+  width: 15vw;
+}
+
+#msg {
+  display: grid;
+  place-items: center;
+}
+
+#msg span {
+  font-weight: 500;
+  font-size: large;
 }
