@@ -1,21 +1,29 @@
 import { Link } from 'react-router-dom'
 
-import { useInfiniteScroll } from '../hooks/infScroll'
+import { useInfiniteScrollUsingInterSectionObserver } from '../hooks/infScroll'
 import { getKey, getLatestClips } from '../api/clip'
 import Question from '../assets/question.svg'
 import styles from '../styles/latest-clips.module.css'
 import Clip from './Clip'
 import useSWRInfinite from 'swr/infinite'
 import Spinner from './Spinner'
+import { useEffect, useRef } from 'react'
 
 function LatestClips (): JSX.Element {
-  const { data, isLoading, isValidating, size, setSize } = useSWRInfinite(getKey, getLatestClips, { revalidateFirstPage: false })
+  const { data, isLoading, isValidating, setSize } = useSWRInfinite(getKey, getLatestClips, { revalidateFirstPage: false })
+  const dummy = useRef(null)
 
-  useInfiniteScroll(() => {
-    if (isLoading || isValidating) return
-    void setSize(size + 1)
+  const [observe, unobserve] = useInfiniteScrollUsingInterSectionObserver(() => {
+    void setSize((size) => size + 1)
   })
 
+  useEffect(() => {
+    if (isLoading) {
+      unobserve(dummy.current)
+    } else {
+      observe(dummy.current)
+    }
+  }, [isLoading, observe, unobserve])
   const clips = []
   for (const page of data ?? []) {
     if (page.status === 'success' && page.clips !== undefined) {
@@ -59,14 +67,15 @@ function LatestClips (): JSX.Element {
             )
           }
         )}
-
+        <div ref={dummy} className={styles.scr33qzxdcv} />
       </div>
-      {!isLoading && isValidating &&
+      {(!isLoading && isValidating) &&
         <div className={styles.load}>
           <Spinner />
         </div>}
 
     </div>
+
   )
 }
 
