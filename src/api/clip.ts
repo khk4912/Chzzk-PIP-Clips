@@ -1,4 +1,4 @@
-import type { LatestClips } from '../types/clip'
+import type { ClipInfo, LatestClips } from '../types/clip'
 
 const DEFAULT_URL = 'https://chzzk-pip.kosame.dev/api'
 
@@ -9,6 +9,11 @@ export const getKey = (pageIndex: number, previousPageData: LatestClips): string
 
 export const getLatestClips = async (url: string): Promise<LatestClips> => {
   return await fetch(url)
+    .then(async res => await res.json())
+}
+
+export const getClip = async (id: string): Promise<ClipInfo> => {
+  return await fetch(`${DEFAULT_URL}/info/${id}`)
     .then(async res => await res.json())
 }
 

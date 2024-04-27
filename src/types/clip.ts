@@ -6,6 +6,10 @@ export interface Clip {
   thumbnailDataURL: string
 }
 
+export interface ClipInfo extends Clip {
+  status: ClipResponseStatus
+}
+
 export interface LatestClips {
   status: ClipResponseStatus
   clips?: Clip[]
