@@ -24,6 +24,7 @@ function LatestClips (): JSX.Element {
       observe(dummy.current)
     }
   }, [isLoading, observe, unobserve])
+
   const clips = []
   for (const page of data ?? []) {
     if (page.status === 'success' && page.clips !== undefined) {
@@ -67,7 +68,7 @@ function LatestClips (): JSX.Element {
             )
           }
         )}
-        <div ref={dummy} className={styles.scr33qzxdcv} />
+        <div ref={dummy} id={styles.scrollDummy} />
       </div>
       {(!isLoading && isValidating) &&
         <div className={styles.load}>
