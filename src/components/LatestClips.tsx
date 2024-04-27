@@ -23,7 +23,7 @@ function LatestClips (): JSX.Element {
     }
   }
 
-  if (clips?.length === 0) {
+  if (!isLoading && clips?.length === 0) {
     return (
       <div className={styles.noClips}>
         <div id={styles.msg}>
