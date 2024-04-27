@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { getClip } from '../api/clip'
 
 import Question from '../assets/question.svg'
+import Spinner from './Spinner'
 
 const WatchClip = (): JSX.Element => {
   const { id } = useParams()
@@ -13,8 +14,8 @@ const WatchClip = (): JSX.Element => {
   const isDataValid = data?.status === 'success'
 
   return (
-    <>
-      {isLoading && <div>로딩 중...</div>}
+    <div className={style.watch}>
+      {isLoading && <Spinner />}
 
       {!isLoading && !isDataValid &&
         <div className={style.noClips}>
@@ -26,15 +27,14 @@ const WatchClip = (): JSX.Element => {
         </div>}
 
       {isDataValid &&
-        <div className={style.watch}>
+        <>
           <video src={`https://r2-clips.kosame.dev/${data?.id}`} controls autoPlay playsInline />
-
           <div className={style.clipInfo}>
             <h2>클립 정보</h2>
             <p>클립 ID: {id}</p>
           </div>
-        </div>}
-    </>
+        </>}
+    </div>
   )
 }
 
