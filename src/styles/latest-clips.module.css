@@ -1,7 +1,7 @@
 .latest-clips {
   width: 90%;
   margin: 5vh 5vw;
-  height: 80vh;
+  height: 80vh; 
 }
 
 .latest-clips h2 {
@@ -13,6 +13,7 @@
   grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   grid-column-gap: 2vw;
   grid-row-gap: 3vh;
+  padding-bottom: 5vh;
 }
 
 .clips a {
