@@ -6,6 +6,7 @@ import Question from '../assets/question.svg'
 import styles from '../styles/latest-clips.module.css'
 import Clip from './Clip'
 import useSWRInfinite from 'swr/infinite'
+import Spinner from './Spinner'
 
 function LatestClips (): JSX.Element {
   const { data, isLoading, isValidating, size, setSize } = useSWRInfinite(getKey, getLatestClips, { revalidateFirstPage: false })
@@ -32,7 +33,7 @@ function LatestClips (): JSX.Element {
     <div className={styles.latestClips}>
       <h2>최근 업로드 된 클립</h2>
 
-      {isLoading && <div>로딩 중...</div>}
+      {isLoading && <Spinner />}
 
       <div className={styles.clips}>
         {clips?.map(
@@ -53,7 +54,13 @@ function LatestClips (): JSX.Element {
             )
           }
         )}
+
       </div>
+      {!isLoading && isValidating &&
+        <div className={styles.load}>
+          <Spinner />
+        </div>}
+
     </div>
   )
 }
