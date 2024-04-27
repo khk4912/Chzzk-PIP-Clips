@@ -9,7 +9,7 @@
 .spinner {
   animation: rotate 2s linear infinite;
   z-index: 2;
-  width: max(5vw, 45px);
+  width: max(3vw, 45px);
 
   & .path {
     stroke: hsl(0, 0%, 80%);
